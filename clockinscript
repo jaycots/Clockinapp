@@ -1,0 +1,15 @@
+// Clear previous clock-in ID
+variable3.setValue(null);
+
+// Execute the clock-in SQL query
+clockInQuery.trigger().then((data) => {
+    // Check if data is returned
+    if (data && data.id) {
+        // Update the variable with the new clock-in ID
+        variable3.setValue(data.id);
+    } else {
+        console.error("No ID returned from clock-in query.");
+    }
+}).catch((error) => {
+    console.error("Error during clock-in:", error);
+});
